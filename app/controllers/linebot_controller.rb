@@ -92,32 +92,33 @@ class LinebotController < ApplicationController
                      end
                     end
                   #テキスト以外（画像）等のメッセージが送られてきた場合
-          　　　　　　 else  
+                 else 
                    push = "テキスト以外はきつい！"
-           　　　　　end
-           　　    message ={
-           　　     type: 'text',
-           　　     text: push
-           　　    }
-           　　    client.reply_messaee(event['replyToken'], message)
-           　　    #LINE友達追加された場合（機能２）
-           　　    when Line::Bot::Event::Follow
-           　　     #登録したユーザーのidをユーザーテーブルに格納
-           　　     line_id = event['source']['userId']
-           　　     User.create(line_id: line_id)
-           　　    #LINE友達解除された場合
-           　　    when Line::Bot::Event::Unfollow
-           　　     #お友達解除したユーザーのデータをユーザーテーブルから削除
-           　　     User.find_by(line_id: line_id).destroy
-           　　    end
+                 end
+             　　 message = {
+          type: 'text',
+          text: push
         }
+        client.reply_message(event['replyToken'], message)
+        # LINEお友達追された場合（機能②）
+      when Line::Bot::Event::Follow
+        # 登録したユーザーのidをユーザーテーブルに格納
+        line_id = event['source']['userId']
+        User.create(line_id: line_id)
+        # LINEお友達解除された場合（機能③）
+      when Line::Bot::Event::Unfollow
+        # お友達解除したユーザーのデータをユーザーテーブルから削除
+        line_id = event['source']['userId']
+        User.find_by(line_id: line_id).destroy
+      end
+    }
        head :ok
     end
     
     private
     
     def client
-      @client || = Line::Bot::Client.new { |config|
+      @client ||= Line::Bot::Client.new { |config|
        config.channel_sercret = ENV["LINE_CHANNEL_SECRET"]
        config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
       }
