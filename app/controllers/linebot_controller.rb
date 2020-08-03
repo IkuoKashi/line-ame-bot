@@ -1,6 +1,6 @@
 class LinebotController < ApplicationController
     require 'line/bot' #gem 'Line-bot-api'
-    require 'open\uri'
+    require 'open-uri'
     require 'kconv'
     require 'rexml/document'
     
