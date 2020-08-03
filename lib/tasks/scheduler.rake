@@ -5,7 +5,7 @@ namespace :scheduler do
         require 'kconv'
         require 'rexml/document'
         
-        client || = Line::Bot::Client.new { | config | 
+        client ||= Line::Bot::Client.new { | config | 
             config.channel_sercret = ENV["LINE_CHANNEl_SECRET"]
             config.channel_token = ENV["LINE_CHANNEl_TOKEN"]
         }
@@ -58,5 +58,5 @@ namespace :scheduler do
              }
              response = client.multicast(user_ids, message)
         end
-        "ok"
-end
+        "OK"
+    end
