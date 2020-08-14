@@ -75,7 +75,7 @@ class LinebotController < ApplicationController
                       ["雨やけど元気出して！",
                       "雨やなあ！お前の大好きな雨！",
                       "もうほんま、雨雨ぱれーらい"
-                       ]
+                       ].sample
                        push =
                        "今日の天気は、雨っぽいわ！傘持って行った方がいいなあ。\n
                        6~12時 #{per06to12}% \n
@@ -95,13 +95,13 @@ class LinebotController < ApplicationController
                  else 
                    push = "テキスト以外はきつい！"
                  end
-             　　 message = {
+             　message = {
           type: 'text',
           text: push
         }
         client.reply_message(event['replyToken'], message)
         # LINEお友達追された場合（機能②）
-      when Line::Bot::Event::Follow
+      when Line::Bot::Event::Follo
         # 登録したユーザーのidをユーザーテーブルに格納
         line_id = event['source']['userId']
         User.create(line_id: line_id)
