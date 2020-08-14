@@ -50,9 +50,9 @@ class LinebotController < ApplicationController
                           また当日の朝に雨が降りそうなら教えるわ！"
                       end
                     when /.*(明後日| あさって).*/
-                      per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]'].text
-                      per12to18 = doc.elements[xpath + 'info[3]/rainfallchance/period[3]'].text
-                      per18to24 = doc.elements[xpath + 'info[3]/rainfallchance/period[4]'].text
+                      per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
+            per12to18 = doc.elements[xpath + 'info[3]/rainfallchance/period[3]l'].text
+            per18to24 = doc.elements[xpath + 'info[3]/rainfallchance/period[4]l'].text
                       if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
                        push =
                        "明後日は雨が降りそう！当日の朝に細心の天気予報で雨が降りそうやったら教えるわ！"
@@ -67,9 +67,9 @@ class LinebotController < ApplicationController
                      push =
                      "こんにちは！今日が君にとって、最高の日でありますように。"
                     else
-                     per06to12 = doc.elements[xpath + 'info/rainfallchance/period[2]'].text
-                     per12to18 = doc.elements[xpath + 'info/rainfallchance/period[3]'].text
-                     per18to24 = doc.elements[xpath + 'info/rainfallchance/period[4]'].text
+                     per06to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
+            per12to18 = doc.elements[xpath + 'info/rainfallchance/period[3]l'].text
+            per18to24 = doc.elements[xpath + 'info/rainfallchance/period[4]l'].text
                      if per06to12.to_i >= min_per || per12to18 >= min_per || per18to24 >= min_per
                       word = 
                       ["雨やけど元気出して！",
@@ -101,7 +101,7 @@ class LinebotController < ApplicationController
         }
         client.reply_message(event['replyToken'], message)
         # LINEお友達追された場合（機能②）
-      when Line::Bot::Event::Follo
+      when Line::Bot::Event::Follow
         # 登録したユーザーのidをユーザーテーブルに格納
         line_id = event['source']['userId']
         User.create(line_id: line_id)
