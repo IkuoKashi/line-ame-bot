@@ -68,8 +68,7 @@ class LinebotController < ApplicationController
                       word = 
                       ["雨やけど元気出して！",
                       "雨やなあ！お前の大好きな雨！",
-                      "もうほんま、雨雨ぱれーらい"
-                       ].sample
+                      "もうほんま、雨雨ぱれーらい"].sample
                        push =
                        "今日の天気は、雨っぽいわ！傘持って行った方がいいなあ。\n
                        6~12時 #{per06to12}% \n
@@ -79,8 +78,7 @@ class LinebotController < ApplicationController
                      else
                        word = 
                        ["天気ええ感じ！",
-                       "雨降ったらすまん！"
-                        ]
+                       "雨降ったらすまん！"]
                         push = 
                         "今日は雨降らなさそうやわ！\n #{word}"
                      end
