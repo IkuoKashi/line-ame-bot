@@ -43,17 +43,17 @@ class LinebotController < ApplicationController
               push =
                 "明日の天気？\n明日は雨が降らない予定だよ(^^)\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
             end
-                    when /.*(明後日| あさって).*/
-                      per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
+                    when /.*(明後日|あさって).*/
+            per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
             per12to18 = doc.elements[xpath + 'info[3]/rainfallchance/period[3]l'].text
             per18to24 = doc.elements[xpath + 'info[3]/rainfallchance/period[4]l'].text
-                      if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
-                       push =
-                       "明後日は雨が降りそう！当日の朝に細心の天気予報で雨が降りそうやったら教えるわ！"
-                      else
-                       push =
-                       "明後日は雨降らなさそう！また降りそうやったら、その日の朝に教えるわ"
-                      end
+            if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
+              push =
+                "明後日の天気だよね。\n何かあるのかな？\n明後日は雨が降りそう…\n当日の朝に雨が降りそうだったら教えるからね！"
+            else
+              push =
+                "明後日の天気？\n気が早いねー！何かあるのかな。\n明後日は雨は降らない予定だよ(^^)\nまた当日の朝の最新の天気予報で雨が降りそうだったら教えるからね！"
+            end
                     when /.*(かわいい|可愛い|カワイイ|きれい|綺麗|キレイ|素敵|ステキ|すてき|面白い|おもしろい|ありがと|すごい|スゴイ|スゴい|好き|頑張|がんば|ガンバ).*/
                      push =
                      "ありがとうな！元気出るわ！"
