@@ -85,7 +85,7 @@ class LinebotController < ApplicationController
                  else 
                    push = "テキスト以外はきつい！"
                  end
-             　message = {
+        message = {
           type: 'text',
           text: push
         }
