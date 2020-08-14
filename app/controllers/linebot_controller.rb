@@ -26,7 +26,7 @@ class LinebotController < ApplicationController
                    url = "https://www.drk7.jp/weather/xml/13.xml"
                    xml = open(url).read.touf8
                    doc = REXML::Document.new(xml)
-                   xpath = 'weatherforecast/pref/area[4]'
+                   xpath = 'weatherforecast/pref/area[4]/'
                    # 当日朝のメッセージの送信の下限値は20％としているが、明日・明後日雨が降るかどうかの下限値は30％としている
                    min_per = 30
                    case input
