@@ -101,8 +101,8 @@ class LinebotController < ApplicationController
         line_id = event['source']['userId']
         User.find_by(line_id: line_id).destroy
       end
-        }
-       head :ok
+    }
+    head :ok
     end
     
     private
