@@ -73,14 +73,13 @@ class LinebotController < ApplicationController
                        "今日の天気は、雨っぽいわ！傘持って行った方がいいなあ。\n
                        6~12時 #{per06to12}% \n
                        12~18時 #{per12to18}% \n
-                       18~24時 #{per18to24}% \n
-                       #{word}"
+                       18~24時 #{per18to24}% \n#{word}"
                      else
                        word = 
                        ["天気ええ感じ！",
-                       "雨降ったらすまん！"]
+                       "雨降ったらすまん！"].sample
                         push = 
-                        "今日は雨降らなさそうやわ！\n #{word}"
+                        "今日は雨降らなさそうやわ！\n#{word}"
                      end
                     end
                   #テキスト以外（画像）等のメッセージが送られてきた場合
