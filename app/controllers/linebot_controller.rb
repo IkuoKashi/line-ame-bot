@@ -32,23 +32,17 @@ class LinebotController < ApplicationController
                    case input
                     # 明日」or「あした」というワードが含まれる場合
                    when /.*(明日|あした).*/
-                      # info[2]：明日の天気
-                      per06to12 = doc.elements[xpath + 'info[2]/rainfallchance/period[2]'].text
-                      per12to18 = doc.elements[xpath + 'info[2]/rainfallchance/period[3]'].text
-                      per18to24 = doc.elements[xpath + 'info[2]/rainfallchance/period[4]'].text
-                      if per06to12.to_i >= min_per || per12to18 >= minper || per18to24 >= minper
-                         push = 
-                         "明日の天気やな。\n明日は雨が降りそうやわ(>_<)\n今のところ降水確率はこんな感じやで。\n
-                         6~12時　#{per06to12}% \n
-                         12~18時　#{per12to18}% \n
-                         18~24時　#{per18to24}% \n
-                         また明日の朝の最新の天気予報で雨が降ったら教えるわ！
-                         "
-                      else
-                         push =
-                          "明日は雨降らなさそう！\n
-                          また当日の朝に雨が降りそうなら教えるわ！"
-                      end
+            # info[2]：明日の天気
+            per06to12 = doc.elements[xpath + 'info[2]/rainfallchance/period[2]'].text
+            per12to18 = doc.elements[xpath + 'info[2]/rainfallchance/period[3]'].text
+            per18to24 = doc.elements[xpath + 'info[2]/rainfallchance/period[4]'].text
+            if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
+              push =
+                "明日の天気だよね。\n明日は雨が降りそうだよ(>_<)\n今のところ降水確率はこんな感じだよ。\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
+            else
+              push =
+                "明日の天気？\n明日は雨が降らない予定だよ(^^)\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
+            end
                     when /.*(明後日| あさって).*/
                       per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
             per12to18 = doc.elements[xpath + 'info[3]/rainfallchance/period[3]l'].text
